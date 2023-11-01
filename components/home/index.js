@@ -77,7 +77,7 @@ export default function Home() {
                       {res.user.name}
                     </h5>
                     <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {res.user.email}
+                      {res.user.email} - {new Date(res.created_at).toLocaleDateString("en-US")}
                     </span>
                   </div>
                 </div>
