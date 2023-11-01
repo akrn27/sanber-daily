@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Avatar, Button, Card, Dropdown, DropdownItem } from "flowbite-react";
 import axios from "axios";
+import Link from "next/link";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ const Profile = () => {
         `https://paace-f178cafcae7b.nevacloud.io/api/posts?type=all`,
         config
       );
-        console.log(response.data.data)
+        // console.log(response.data.data)
       setMyPosts(response.data.data);
     } catch (error) {
       console.log(error);
@@ -66,11 +67,11 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      // console.log(idData)
-      await axios.delete(
-        `https://paace-f178cafcae7b.nevacloud.io/api/post/delete/${idData}`,
-        config
-      );
+      console.log(idData)
+    //   await axios.delete(
+    //     `https://paace-f178cafcae7b.nevacloud.io/api/post/delete/${idData}`,
+    //     config
+    //   );
     } catch (error) {
       console.log(error);
     }
@@ -185,15 +186,16 @@ const Profile = () => {
                       </a>
                     </div>
                     <div className="flex gap-3 w-full">
-                      <Button className="w-full">Edit</Button>
-                      <Button
+                        <Link className="w-full bg-cyan-700 text-white rounded-md flex justify-center" href={`/profilepage/${filteredPost.id}`}>
+                            <button>Edit</button>
+                        </Link>
+                      <button
                         onClick={(e) => deletePost(e.target.value)}
                         value={filteredPost.id}
-                        color="failure"
-                        className="w-full"
+                        className="bg-red-700 h-11 text-white rounded-md w-full"
                       >
                         Delete
-                      </Button>
+                      </button>
                     </div>
                   </div>
                 ))}
