@@ -130,9 +130,6 @@ const Profile = () => {
                           {filteredPost.user.email} - 
                           ({new Date(filteredPost.created_at).toLocaleDateString("en-US")})
                         </span>
-                        <p>
-                            
-                        </p>
                       </div>
                     </div>
                     <p className="my-4 w-full">{filteredPost.description}</p>
