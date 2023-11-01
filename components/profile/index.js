@@ -112,8 +112,8 @@ const Profile = () => {
                   return res.user.id === id;
                 })
                 .map((filteredPost) => (
-                  <>
-                    <div className="flex gap-8 w-full">
+                  <div className="w-full shadow-sm my-2">
+                    <div className="flex gap-8 w-full mt-6">
                       <Avatar
                         alt="Bonnie image"
                         className="mb-3 rounded-full shadow-lg"
@@ -126,8 +126,12 @@ const Profile = () => {
                           {filteredPost.user.name}
                         </h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {filteredPost.user.email}
+                          {filteredPost.user.email} - 
+                          ({new Date(filteredPost.created_at).toLocaleDateString("en-US")})
                         </span>
+                        <p>
+                            
+                        </p>
                       </div>
                     </div>
                     <p className="my-4 w-full">{filteredPost.description}</p>
@@ -191,7 +195,7 @@ const Profile = () => {
                         Delete
                       </Button>
                     </div>
-                  </>
+                  </div>
                 ))}
           </div>
         </Card>
