@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Avatar, Button, Card, Dropdown, DropdownItem } from "flowbite-react";
 import axios from "axios";
+import Link from "next/link";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ const Profile = () => {
         `https://paace-f178cafcae7b.nevacloud.io/api/posts?type=all`,
         config
       );
-        console.log(response.data.data)
+        // console.log(response.data.data)
       setMyPosts(response.data.data);
     } catch (error) {
       console.log(error);
@@ -66,11 +67,11 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      // console.log(idData)
-      await axios.delete(
-        `https://paace-f178cafcae7b.nevacloud.io/api/post/delete/${idData}`,
-        config
-      );
+      console.log(idData)
+    //   await axios.delete(
+    //     `https://paace-f178cafcae7b.nevacloud.io/api/post/delete/${idData}`,
+    //     config
+    //   );
     } catch (error) {
       console.log(error);
     }
@@ -112,8 +113,8 @@ const Profile = () => {
                   return res.user.id === id;
                 })
                 .map((filteredPost) => (
-                  <>
-                    <div className="flex gap-8 w-full">
+                  <div className="w-full shadow-sm my-2">
+                    <div className="flex gap-8 w-full mt-6">
                       <Avatar
                         alt="Bonnie image"
                         className="mb-3 rounded-full shadow-lg"
@@ -126,7 +127,8 @@ const Profile = () => {
                           {filteredPost.user.name}
                         </h5>
                         <span className="text-sm text-gray-500 dark:text-gray-400">
-                          {filteredPost.user.email}
+                          {filteredPost.user.email} - 
+                          ({new Date(filteredPost.created_at).toLocaleDateString("en-US")})
                         </span>
                       </div>
                     </div>
@@ -181,17 +183,18 @@ const Profile = () => {
                       </a>
                     </div>
                     <div className="flex gap-3 w-full">
-                      <Button className="w-full">Edit</Button>
-                      <Button
+                        <Link className="w-full bg-cyan-700 text-white rounded-md flex justify-center" href={`/profilepage/${filteredPost.id}`}>
+                            <button>Edit</button>
+                        </Link>
+                      <button
                         onClick={(e) => deletePost(e.target.value)}
                         value={filteredPost.id}
-                        color="failure"
-                        className="w-full"
+                        className="bg-red-700 h-11 text-white rounded-md w-full"
                       >
                         Delete
-                      </Button>
+                      </button>
                     </div>
-                  </>
+                  </div>
                 ))}
           </div>
         </Card>
