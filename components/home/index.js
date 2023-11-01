@@ -69,12 +69,17 @@ export default function Home() {
           Authorization: `Bearer ${token}`,
         },
       };
+
       await axios.post(
-        `https://paace-f178cafcae7b.nevacloud.io/api/likes/post/${likeId}`,
-        config
+        `https://paace-f178cafcae7b.nevacloud.io/api/likes/post/${likeId}`, {}, config
       );
+      // console.log(token)
+      // getPosts()
+      router.reload()
     } catch (error) {
-      console.log(error);
+      if(error.response) {
+        console.log(error.response)
+      }
     }
   };
 
@@ -132,7 +137,9 @@ export default function Home() {
 
                   <div className="flex space-x-3 lg:mt-6 mb-8">
                     <button
-                      onClick={(e) => handleLike(res.id)}
+                      type="button"
+                      onClick={(e) => handleLike(e.target.value)}
+                      value={res.id}
                       className="inline-flex items-center rounded-lg border-2 px-4 py-2 text-center text-sm font-medium focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                     >
                       {/* IS LIKES */}
