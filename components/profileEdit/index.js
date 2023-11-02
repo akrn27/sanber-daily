@@ -2,12 +2,12 @@ import Layout from "@/layout";
 import React, { useEffect, useState } from "react";
 import { Label, Textarea, Button } from "flowbite-react";
 import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 const ProfileEdit = () => {
-  const { id } = useParams();
   const router = useRouter();
+  const {id} = router.query;
   const [description, setDescription] = useState("");
 
   const getPostById = async () => {

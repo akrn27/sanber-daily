@@ -1,10 +1,10 @@
 import React from 'react'
 import ProfileEdit from '@/components/profileEdit'
 
-const profileIdPage = () => {
+const ProfileIdPage = () => {
   return (
     <ProfileEdit />
   )
 }
 
-export default profileIdPage
+export default ProfileIdPage

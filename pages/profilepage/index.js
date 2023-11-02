@@ -1,10 +1,10 @@
 import Profile from '@/components/profile'
 import React from 'react'
 
-const profilePage = () => {
+const ProfilePage = () => {
   return (
     <Profile />
   )
 }
 
-export default profilePage
+export default ProfilePage
