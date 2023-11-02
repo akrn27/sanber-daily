@@ -128,7 +128,7 @@ export default function Home() {
           {posts &&
             posts.map((res, i) => {
               return (
-                <>
+                <div className="w-full" key={i}>
                   <div className="flex gap-8 w-full">
                     <Avatar
                       alt="Bonnie image"
@@ -165,7 +165,7 @@ export default function Home() {
                       >
                         <span>
                           <svg
-                            class="w-6 h-6 mr-3 text-gray-800 dark:text-white"
+                            className="w-6 h-6 mr-3 text-gray-800 dark:text-white"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
@@ -226,7 +226,7 @@ export default function Home() {
                       </div>
                     </a>
                   </div>
-                </>
+                </div>
               );
             })}
         </div>

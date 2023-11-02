@@ -112,8 +112,8 @@ const Profile = () => {
                 .filter((res) => {
                   return res.user.id === id;
                 })
-                .map((filteredPost) => (
-                  <div className="w-full shadow-sm my-2">
+                .map((filteredPost, i) => (
+                  <div key={i} className="w-full shadow-sm my-2">
                     <div className="flex gap-8 w-full mt-6">
                       <Avatar
                         alt="Bonnie image"
