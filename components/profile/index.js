@@ -83,8 +83,6 @@ const Profile = () => {
         <div className="flex justify-end px-4 pt-4"></div>
         <div className="flex flex-col items-center pb-10">
           <Avatar
-            display
-            Name
             alt="Bonnie image"
             className="mb-3 rounded-full shadow-lg"
             height="96"
