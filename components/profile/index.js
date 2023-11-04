@@ -102,19 +102,23 @@ const Profile = () => {
 
   const handleUnlike = async (unlikeId) => {
     try {
-      const token = Cookies.get("user_token")
+      const token = Cookies.get("user_token");
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-      await axios.post(`https://paace-f178cafcae7b.nevacloud.io/api/unlikes/post/${unlikeId}`, {}, config)
+      await axios.post(
+        `https://paace-f178cafcae7b.nevacloud.io/api/unlikes/post/${unlikeId}`,
+        {},
+        config
+      );
       router.reload();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -219,9 +223,9 @@ const Profile = () => {
                         </button>
                       )}
 
-                      <a
+                      <Link
                         className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                        href="#"
+                        href={`/replypage/${filteredPost.id}`}
                       >
                         <div className="flex items-center">
                           <svg
@@ -239,9 +243,9 @@ const Profile = () => {
                               d="M16 5h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2v3l-4-3H8m4-13H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2v3l4-3h4a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
                             />
                           </svg>
-                          <span>{filteredPost.replies_count} Replies</span>
+                          {filteredPost.replies_count} Replies
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <div className="flex gap-3 w-full">
                       <Link
