@@ -42,7 +42,7 @@ const Reply = () => {
         }
       }
       await axios.post(`https://paace-f178cafcae7b.nevacloud.io/api/replies/post/${id}`, {description}, config)
-      router.reload();
+      router.push("/");
     } catch (error) {
       console.log(error)
     }
@@ -71,7 +71,7 @@ const Reply = () => {
       <div className="shadow-xl mt-3">
         {replies.length > 0 ? (
           replies.map((reply) => (
-            <div className="shadow-lg p-3 mb-4 rounded-lg">
+            <div className="bg-zinc-100 p-3 mb-4 rounded-lg">
               <h2 className="text-xl font-semibold">{reply.user.name}</h2>
               <p>{new Date(reply.created_at).toLocaleDateString("en-US")}</p>
               <p>{reply.description}</p>
