@@ -22,7 +22,7 @@ const Reply = () => {
         `https://paace-f178cafcae7b.nevacloud.io/api/replies/post/${id}`,
         config
       );
-      // console.log(response.data.data)
+      console.log('=>' ,response.data.data)
       setReplies(response.data.data);
     } catch (error) {
       console.log(error);
@@ -42,11 +42,28 @@ const Reply = () => {
         }
       }
       await axios.post(`https://paace-f178cafcae7b.nevacloud.io/api/replies/post/${id}`, {description}, config)
-      router.push("/");
+      getReplies()
+      setDescription("")
     } catch (error) {
       console.log(error)
     }
   };
+
+  const handleDelete = async (deleteId) => {
+    try {
+      const token = Cookies.get("user_token")
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      // console.log(deleteId)
+      await axios.delete(`https://paace-f178cafcae7b.nevacloud.io/api/replies/delete/${deleteId}`, config)
+      getReplies()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
@@ -75,6 +92,7 @@ const Reply = () => {
               <h2 className="text-xl font-semibold">{reply.user.name}</h2>
               <p>{new Date(reply.created_at).toLocaleDateString("en-US")}</p>
               <p>{reply.description}</p>
+              {reply.is_own_reply && <button type="button" value={reply.id} onClick={(e) => handleDelete(e.target.value)} className="bg-red-600 rounded-lg py-2 px-4 text-slate-50 mt-2">Delete</button>}
             </div>
           ))
         ) : (

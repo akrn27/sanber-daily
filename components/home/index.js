@@ -119,9 +119,9 @@ export default function Home() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <Button type="submit" color="failure">
+        <button className="bg-red-600 text-slate-50 py-3 w-full rounded-lg" type="submit" color="failure">
           Post
-        </Button>
+        </button>
       </form>
 
       <Card>
