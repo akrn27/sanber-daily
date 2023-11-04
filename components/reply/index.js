@@ -8,6 +8,7 @@ const Reply = () => {
   const router = useRouter();
   const { id } = router.query;
   const [replies, setReplies] = useState("");
+  const [description, setDescription] = useState("");
 
   const getReplies = async () => {
     try {
@@ -31,7 +32,21 @@ const Reply = () => {
     getReplies();
   }, []);
 
-  const addReply = async (e) => {};
+  const addReply = async (e) => {
+    e.preventDefault();
+    try {
+      const token = Cookies.get("user_token");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      await axios.post(`https://paace-f178cafcae7b.nevacloud.io/api/replies/post/${id}`, {description}, config)
+      router.reload();
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
   return (
     <div>
@@ -45,8 +60,8 @@ const Reply = () => {
             placeholder="reply post..."
             required
             rows={4}
-            value=""
-            onChange=""
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <Button type="submit" color="info">
