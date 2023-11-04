@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 export default function Home() {
   const [posts, setPosts] = useState("");
@@ -118,9 +119,9 @@ export default function Home() {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <Button type="submit" color="failure">
+        <button className="bg-red-600 text-slate-50 py-3 w-full rounded-lg" type="submit" color="failure">
           Post
-        </Button>
+        </button>
       </form>
 
       <Card>
@@ -202,9 +203,9 @@ export default function Home() {
                       </button>
                     )}
 
-                    <a
+                    <Link
                       className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                      href="#"
+                      href={`/replypage/${res.id}`}
                     >
                       <div className="flex items-center">
                         <svg
@@ -222,9 +223,9 @@ export default function Home() {
                             d="M16 5h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-2v3l-4-3H8m4-13H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2v3l4-3h4a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"
                           />
                         </svg>
-                        <span>{res.replies_count} Replies</span>
+                        {res.replies_count} Replies
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               );
